@@ -1,0 +1,26 @@
+{
+  "name": "badminton-club-platform",
+  "version": "1.0.0",
+  "description": "羽毛球社团数字化管理平台",
+  "main": "index.html",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step required'",
+    "deploy": "netlify deploy --prod"
+  },
+  "keywords": [
+    "badminton",
+    "club",
+    "management",
+    "supabase",
+    "netlify"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "netlify-cli": "^17.0.0"
+  }
+}

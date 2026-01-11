@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>羽毛球社团 - 挥洒青春，羽你同行</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">🏸</span>
+                <span class="brand-text">羽毛球社团</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">关于我们</a></li>
+                <li><a href="#activities">活动</a></li>
+                <li><a href="#members">成员</a></li>
+                <li><a href="#dashboard">社务公示</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="user-status" id="userStatus">
+                <button class="btn-login" id="btnLogin">登录/注册</button>
+                <div class="user-info" id="userInfo" style="display: none;">
+                    <span id="userName"></span>
+                    <button class="btn-logout" id="btnLogout">退出</button>
+                </div>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">挥洒青春，羽你同行</h1>
+            <p class="hero-subtitle">加入我们，一起享受羽毛球的乐趣</p>
+            <a href="#contact" class="cta-button">立即加入</a>
+        </div>
+        <div class="hero-overlay"></div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">关于我们</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>羽毛球社团是一个充满活力和激情的运动团体，致力于推广羽毛球运动，为所有热爱羽毛球的同学提供一个交流、学习和竞技的平台。</p>
+                    <p>我们定期组织训练、比赛和社交活动，无论你是初学者还是经验丰富的选手，都能在这里找到属于自己的位置。</p>
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <h3>专业指导</h3>
+                            <p>经验丰富的教练指导</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🏆</div>
+                            <h3>竞技比赛</h3>
+                            <p>定期举办各类比赛</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">👥</div>
+                            <h3>友好氛围</h3>
+                            <p>温馨和谐的社团环境</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 活动 -->
+    <section id="activities" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">活动安排</h2>
+            <div class="activities-grid" id="activitiesGrid">
+                <!-- 动态加载活动数据 -->
+                <div class="loading" id="activitiesLoading">加载中...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成员展示 -->
+    <section id="members" class="section">
+        <div class="container">
+            <h2 class="section-title">核心成员</h2>
+            <div class="members-grid" id="membersGrid">
+                <!-- 保留静态成员展示（可选：后续可改为动态） -->
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>张教练</h3>
+                    <p class="member-role">主教练</p>
+                    <p class="member-desc">10年教学经验，专业羽毛球教练</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>李同学</h3>
+                    <p class="member-role">社长</p>
+                    <p class="member-desc">组织协调社团各项活动</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>王同学</h3>
+                    <p class="member-role">副社长</p>
+                    <p class="member-desc">负责训练和比赛安排</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <h3>刘同学</h3>
+                    <p class="member-role">宣传部长</p>
+                    <p class="member-desc">负责社团宣传和活动推广</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 社务公示 -->
+    <section id="dashboard" class="section">
+        <div class="container">
+            <h2 class="section-title">社务公示</h2>
+            <div class="dashboard-content">
+                <div class="dashboard-card">
+                    <h3>💰 财务公示</h3>
+                    <div class="finance-summary">
+                        <div class="finance-item">
+                            <span class="finance-label">总收入</span>
+                            <span class="finance-value income" id="totalIncome">¥0</span>
+                        </div>
+                        <div class="finance-item">
+                            <span class="finance-label">总支出</span>
+                            <span class="finance-value expense" id="totalExpense">¥0</span>
+                        </div>
+                        <div class="finance-item total">
+                            <span class="finance-label">余额</span>
+                            <span class="finance-value" id="balance">¥0</span>
+                        </div>
+                    </div>
+                    <div class="finance-list" id="financeList">
+                        <!-- 动态加载财务流水 -->
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>📦 物资管理</h3>
+                    <div class="inventory-list" id="inventoryList">
+                        <!-- 动态加载物资列表 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">加入我们</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>联系方式</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>邮箱：badminton@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <span>微信：badminton_club</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>地址：体育馆羽毛球场</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">⏰</span>
+                        <span>活动时间：每周二、四 19:00-21:00</span>
+                    </div>
+                </div>
+                <form class="contact-form" id="joinForm" netlify>
+                    <input type="hidden" name="form-name" value="joinForm">
+                    <h3>报名表单</h3>
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">电话</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">留言</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">提交申请</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 羽毛球社团. 保留所有权利.</p>
+            <p class="footer-links">
+                <a href="#home">首页</a> | 
+                <a href="#about">关于我们</a> | 
+                <a href="#activities">活动</a> | 
+                <a href="#contact">联系我们</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- 登录/注册 Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeAuthModal">&times;</span>
+            <h2 id="authModalTitle">登录</h2>
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="authEmail">邮箱</label>
+                    <input type="email" id="authEmail" name="email" required>
+                </div>
+                <div class="form-group" id="passwordGroup">
+                    <label for="authPassword">密码</label>
+                    <input type="password" id="authPassword" name="password" required>
+                </div>
+                <div class="form-group" id="registerFields" style="display: none;">
+                    <label for="authName">真实姓名</label>
+                    <input type="text" id="authName" name="name" required>
+                </div>
+                <div class="form-group" id="registerFields2" style="display: none;">
+                    <label for="authStudentId">学号</label>
+                    <input type="text" id="authStudentId" name="studentId" required>
+                </div>
+                <div class="form-group" id="registerFields3" style="display: none;">
+                    <label for="authCollege">学院</label>
+                    <input type="text" id="authCollege" name="college" required>
+                </div>
+                <button type="submit" class="submit-button" id="authSubmit">登录</button>
+            </form>
+            <p class="auth-switch">
+                <span id="authSwitchText">还没有账号？</span>
+                <a href="#" id="authSwitchLink">立即注册</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- 签到 Modal -->
+    <div class="modal" id="checkinModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeCheckinModal">&times;</span>
+            <h2>请完成签到</h2>
+            <div class="checkin-content">
+                <p>请扫描下方二维码完成学校活动网签到：</p>
+                <div class="checkin-qr" id="checkinQR">
+                    <!-- 签到二维码图片 -->
+                </div>
+                <button class="submit-button" id="confirmCheckin">我已签到</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 领票链接 Modal -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content">
+            <span class="modal-close" id="closeTicketModal">&times;</span>
+            <h2>报名成功！</h2>
+            <div class="ticket-content">
+                <p>恭喜您报名成功！请点击下方链接领取入场券：</p>
+                <a href="#" id="ticketLink" class="ticket-link" target="_blank">点击领取入场券</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html>

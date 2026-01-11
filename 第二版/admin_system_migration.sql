@@ -20,16 +20,16 @@ CREATE TABLE IF NOT EXISTS admin_roles (
     appointed_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     is_active BOOLEAN DEFAULT TRUE,  -- 是否在职
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-
-    -- 确保一个用户只能有一个活跃的角色
-    UNIQUE(user_id, is_active) WHERE is_active = TRUE
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 -- 索引
 CREATE INDEX idx_admin_roles_user_id ON admin_roles(user_id);
 CREATE INDEX idx_admin_roles_role ON admin_roles(role);
 CREATE INDEX idx_admin_roles_is_active ON admin_roles(is_active);
+
+-- 部分唯一索引：确保一个用户只能有一个活跃的角色
+CREATE UNIQUE INDEX idx_admin_roles_user_active ON admin_roles(user_id) WHERE is_active = TRUE;
 
 -- 自动更新时间戳
 CREATE TRIGGER update_admin_roles_updated_at

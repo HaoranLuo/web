@@ -4,9 +4,26 @@
 const { createClient } = require('@supabase/supabase-js');
 
 exports.handler = async (event, context) => {
+    // 设置 CORS 头
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+    };
+
+    // 处理预检请求
+    if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers,
+            body: ''
+        };
+    }
+
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
+            headers,
             body: JSON.stringify({ error: 'Method not allowed' })
         };
     }
@@ -25,6 +42,7 @@ exports.handler = async (event, context) => {
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return {
                 statusCode: 401,
+                headers,
                 body: JSON.stringify({
                     success: false,
                     error: '未授权：请先登录'
@@ -46,6 +64,7 @@ exports.handler = async (event, context) => {
         if (authError || !user) {
             return {
                 statusCode: 401,
+                headers,
                 body: JSON.stringify({
                     success: false,
                     error: '身份验证失败，请重新登录'
@@ -64,6 +83,7 @@ exports.handler = async (event, context) => {
         if (!realName || !studentId || !college || !email) {
             return {
                 statusCode: 400,
+                headers,
                 body: JSON.stringify({
                     success: false,
                     error: '缺少必要参数'
@@ -89,6 +109,7 @@ exports.handler = async (event, context) => {
             if (error.code === '23505') { // unique_violation
                 return {
                     statusCode: 200,
+                    headers,
                     body: JSON.stringify({
                         success: true,
                         message: '用户资料已存在',
@@ -101,6 +122,7 @@ exports.handler = async (event, context) => {
 
         return {
             statusCode: 200,
+            headers,
             body: JSON.stringify({
                 success: true,
                 profile: data
@@ -111,6 +133,7 @@ exports.handler = async (event, context) => {
         console.error('创建用户资料错误:', error);
         return {
             statusCode: 500,
+            headers,
             body: JSON.stringify({
                 success: false,
                 error: error.message || '服务器错误'
